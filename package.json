@@ -1,0 +1,57 @@
+{
+  "author": "Junan",
+  "bin": {
+    "qris": "bin/qris.js"
+  },
+  "description": "Parse, build, validate and convert QRIS payloads (Quick Response Code Indonesian Standard, EMVCo Merchant-Presented Mode). Zero dependencies.",
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@types/node": "^26.6.6",
+    "eslint": "^9.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0",
+    "typescript-eslint": "^8.72.1"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/cjs/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "bin"
+  ],
+  "homepage": "https://github.com/junanda24/daily-qris-id#readme",
+  "keywords": [
+    "qris",
+    "emvco",
+    "qr",
+    "payment",
+    "indonesia",
+    "qris-payload",
+    "crc16"
+  ],
+  "license": "MIT",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "name": "qris-id",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/junanda24/daily-qris-id.git"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json",
+    "format": "prettier --write src test bin examples package.json README.md",
+    "lint": "eslint src test bin examples && prettier --check src test bin examples package.json README.md",
+    "prepack": "npm run build",
+    "test": "npm run build && node --test test/*.test.js",
+    "prepare": "npm run build"
+  },
+  "types": "dist/cjs/index.d.ts",
+  "version": "0.1.0"
+}

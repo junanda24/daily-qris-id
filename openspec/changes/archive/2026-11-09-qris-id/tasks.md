@@ -1,0 +1,35 @@
+# Tasks — qris-id
+
+- [x] Explore: riset ide, cek nama npm (`qris` terpakai stub 0.0.1; `qris-id` tersedia), verifikasi 2 vektor QRIS nyata + CRC
+- [x] Propose: proposal.md, spec.md, design.md, tasks.md (disetujui sendiri, tanpa gate)
+- [x] Apply — scaffold
+  - [ ] `package.json` (name `qris-id`, version 0.1.0, exports ESM+CJS, bin, scripts), `tsconfig*.json`, `eslint.config.js`, `.prettierrc`, `.gitignore`, `LICENSE` (MIT), `CHANGELOG.md`
+  - [ ] `npm install -D typescript eslint @eslint/js prettier` (dev-only)
+- [x] Apply — source `src/` (tiap file < 300 baris)
+  - [ ] `types.ts` + `errors.ts` (interface + QrisError berkode)
+  - [ ] `crc16.ts` (CRC-16/CCITT-FALSE)
+  - [ ] `tlv.ts` (encode/decode TLV + nested, panjang byte UTF-8)
+  - [ ] `providers.ts` (map GUI terverifikasi saja)
+  - [ ] `parse.ts` (strict, aturan R2/R3)
+  - [ ] `build.ts` (kanonik order, validasi batas field)
+  - [ ] `validate.ts` (`validate` kumpulkan semua error + `isQris`)
+  - [ ] `convert.ts` (`toDynamic`, bawa unknown tags)
+  - [ ] `index.ts` (public API)
+- [x] Apply — test `test/` (node:test, import dari `dist/cjs`)
+  - [ ] `vectors.js` (V1 Fulung Store, V2 VFS Global — CRC terverifikasi)
+  - [ ] `crc16.test.js`, `parse.test.js`, `build.test.js`, `validate.test.js`, `convert.test.js`
+- [x] Apply — `bin/qris.js` (parse/validate/dynamic/--help) + `examples/basic.mjs`
+- [x] Apply — `README.md` lengkap (instalasi, contoh, tabel field, error codes, disclaimer bukan produk BI)
+- [x] Verify
+  - [ ] `npm run build` hijau, `npm test` hijau, `npm run lint` hijau
+  - [ ] Round-trip: `build(parse(V1)) === V1`, `build(parse(V2)) === V2`
+  - [ ] `npm pack --dry-run` + install tarball di folder kosong → require + import jalan
+  - [ ] CLI `dynamic` pada V1 → payload lolos `validate`
+  - [ ] Scan secret sebelum commit (tidak ada `.env`/kunci)
+- [x] Archive + GitHub
+  - [ ] Arsip change → `openspec/changes/archive/2026-11-09-qris-id/`
+  - [ ] `git init` + commit, buat repo `junanda24/daily-qris-id` (public), push via `push_repo.py`
+  - [ ] Verifikasi via API: file source ADA di listing repo
+  - [ ] Catat di `~/workspace/daily-webs/BUILT.md`
+  - [ ] Update profile README `junanda24/junanda24` (tabel Project harian) + push + verifikasi API
+- [x] Antar ke Junan (final message: apa, kenapa, link repo + cara install)
